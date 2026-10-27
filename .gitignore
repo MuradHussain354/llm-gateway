@@ -147,3 +147,10 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+# Project secrets and build output
+.dev.vars
+.env
+.env.*
+.wrangler
+node_modules
+dist
