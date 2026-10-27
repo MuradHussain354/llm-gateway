@@ -1,0 +1,23 @@
+{
+  "name": "llm-gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.39.3",
+    "hono": "^4.7.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250214.0",
+    "drizzle-kit": "^0.30.4",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5",
+    "wrangler": "^4.86.0"
+  }
+}
