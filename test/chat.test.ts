@@ -40,6 +40,9 @@ describe("POST /v1/chat/completions", () => {
           findFirst: vi.fn().mockResolvedValue(validKey),
         },
       },
+      insert: vi.fn().mockReturnValue({
+        values: vi.fn().mockResolvedValue(undefined),
+      }),
     };
     vi.spyOn(dbClient, "getDb").mockReturnValue(mockDb as unknown as dbClient.DbClient);
 

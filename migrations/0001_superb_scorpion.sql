@@ -1,0 +1,1 @@
+ALTER TABLE `request_logs` ADD `usage_estimated` integer DEFAULT false NOT NULL;

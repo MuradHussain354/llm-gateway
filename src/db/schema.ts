@@ -24,6 +24,9 @@ export const requestLogs = sqliteTable(
     latency_ms: integer("latency_ms").notNull(),
     prompt_tokens: integer("prompt_tokens").notNull(),
     completion_tokens: integer("completion_tokens").notNull(),
+    usage_estimated: integer("usage_estimated", { mode: "boolean" })
+      .notNull()
+      .default(false),
     cache_hit: integer("cache_hit", { mode: "boolean" }).notNull().default(false),
     error_type: text("error_type"),
     created_at: integer("created_at", { mode: "timestamp" })

@@ -65,15 +65,14 @@ describe("Validation module (src/lib/validation.ts)", () => {
     expect(result.error?.message).toContain("integer");
   });
 
-  it("rejects stream: true with 'streaming is not supported yet'", () => {
+  it("allows stream: true", () => {
     const result = validateChatCompletionRequest(null, {
       messages: [{ role: "user", content: "Hello" }],
       stream: true,
     });
 
-    expect(result.success).toBe(false);
-    expect(result.error?.status).toBe(400);
-    expect(result.error?.message).toBe("streaming is not supported yet");
+    expect(result.success).toBe(true);
+    expect(result.data?.stream).toBe(true);
   });
 
   it("rejects when Content-Length header exceeds 100000 bytes with 413", () => {

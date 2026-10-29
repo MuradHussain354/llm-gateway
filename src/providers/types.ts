@@ -17,6 +17,7 @@ export interface ChatCompletionRequest {
 
 export interface Provider {
   name: ProviderName;
+  model: string;
   isConfigured(env: Bindings): boolean;
   chat(req: ChatCompletionRequest, env: Bindings, signal: AbortSignal): Promise<Response>;
 }

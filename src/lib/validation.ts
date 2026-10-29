@@ -86,20 +86,7 @@ export function validateChatCompletionRequest(
 
   const data = parsed.data;
 
-  // 3. Reject streaming
-  if (data.stream === true) {
-    return {
-      success: false,
-      error: {
-        status: 400,
-        message: "streaming is not supported yet",
-        type: "invalid_request_error",
-        code: "stream_not_supported",
-      },
-    };
-  }
-
-  // 4. Combined message content length check
+  // 3. Combined message content length check
   const totalContentChars = data.messages.reduce(
     (acc, m) => acc + m.content.length,
     0

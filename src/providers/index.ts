@@ -5,6 +5,10 @@ import type { ChatCompletionRequest, Provider } from "./types";
 export class BaseProviderAdapter implements Provider {
   constructor(public readonly name: ProviderName) {}
 
+  get model(): string {
+    return gatewayConfig.providers[this.name].model;
+  }
+
   isConfigured(env: Bindings): boolean {
     const key = gatewayConfig.providers[this.name].getKey(env);
     return typeof key === "string" && key.trim().length > 0;
@@ -22,10 +26,17 @@ export class BaseProviderAdapter implements Provider {
       throw new Error(`Provider ${this.name} is not configured.`);
     }
 
-    const payload = {
+    const payload: Record<string, unknown> = {
       ...req,
       model: config.model,
     };
+
+    if (req.stream === true) {
+      payload.stream = true;
+      payload.stream_options = { include_usage: true };
+    } else {
+      delete payload.stream_options;
+    }
 
     const url = `${config.baseUrl}/chat/completions`;
 
